@@ -1,9 +1,31 @@
 const { Calendar } = require('../models');
 
+
+const { Op } = require('sequelize');
+
 exports.listCalendars = async (req, res) => {
-  const calendars = await Calendar.findAll();
-  res.json(calendars);
+  const userId = parseInt(req.query.user_id);  // 👈 Change #1
+
+  if (!userId) {
+    return res.status(400).json({ error: 'Missing user_id in query params' });  // 👈 Change #2: Error handling
+  }
+
+  try {
+    const calendars = await Calendar.findAll({
+      where: {
+        [Op.or]: [
+          { visibility: 'public' },
+          { visibility: 'private', created_by: userId }
+        ]
+      }
+    });
+
+    res.status(200).json(calendars);
+  } catch (err) {
+    res.status(500).json({ error: 'Error fetching calendars' });
+  }
 };
+
 
 exports.createCalendar = async (req, res) => {
   try {

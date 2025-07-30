@@ -1,5 +1,6 @@
 const { Event } = require('../models');
 
+
 exports.createEvent = async (req, res) => {
   try {
     const event = await Event.create(req.body);
@@ -39,3 +40,5 @@ exports.deleteEvent = async (req, res) => {
   await event.destroy();
   res.json({ message: 'Deleted' });
 }; 
+
+

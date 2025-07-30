@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     name: { type: DataTypes.STRING, allowNull: false },
     type: { type: DataTypes.ENUM('my', 'holiday', 'event', 'subscribed'), allowNull: false },
     created_by: { type: DataTypes.BIGINT, allowNull: true },
+    visibility: DataTypes.ENUM('public', 'private'),
     source: { type: DataTypes.STRING, allowNull: true }
   }, {
     tableName: 'calendars',

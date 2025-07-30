@@ -11,7 +11,7 @@ exports.signup = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  // Dummy login: just checks if email exists
+  
   try {
     const { email } = req.body;
     const user = await User.findOne({ where: { email } });
@@ -30,4 +30,4 @@ exports.getUser = async (req, res) => {
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
-}; 
+};

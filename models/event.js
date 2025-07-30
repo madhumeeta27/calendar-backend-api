@@ -3,6 +3,10 @@ module.exports = (sequelize, DataTypes) => {
     calendar_id: { type: DataTypes.BIGINT, allowNull: false },
     user_id: { type: DataTypes.BIGINT, allowNull: false },
     type: { type: DataTypes.ENUM('event', 'task'), allowNull: false },
+    priority: {
+  type: DataTypes.ENUM('low', 'medium', 'high'),allowNull:true
+
+},
     heading: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.TEXT, allowNull: true },
     event_date: { type: DataTypes.DATEONLY, allowNull: false },
